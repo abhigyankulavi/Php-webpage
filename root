@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Information</title>
+</head>
+<body>
+    <h1>Student Information</h1>
+    <form method="post" action="">
+        <label for="name">Name:</label>
+        <input type="text" name="name[]" required><br><br>
+
+        <label for="roll">Roll:</label>
+        <input type="text" name="roll[]" required><br><br>
+
+        <label for="stream">Stream:</label>
+        <input type="text" name="stream[]" required><br><br>
+
+        <label for="batch">Batch:</label>
+        <input type="text" name="batch[]" required><br><br>
+
+        <input type="submit" name="submit" value="Submit">
+    </form>
+
+    <?php
+    // Check if the form is submitted
+    if(isset($_POST['submit'])) {
+        // Retrieve the submitted data
+        $names = $_POST['name'];
+        $rolls = $_POST['roll'];
+        $streams = $_POST['stream'];
+        $batches = $_POST['batch'];
+
+        // Display the data in a table
+        echo "<h2>Student Information</h2>";
+        echo "<table border='1'>";
+        echo "<tr><th>Name</th><th>Roll</th><th>Stream</th><th>Batch</th></tr>";
+
+        for ($i = 0; $i < count($names); $i++) {
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($names[$i]) . "</td>";
+            echo "<td>" . htmlspecialchars($rolls[$i]) . "</td>";
+            echo "<td>" . htmlspecialchars($streams[$i]) . "</td>";
+            echo "<td>" . htmlspecialchars($batches[$i]) . "</td>";
+            echo "</tr>";
+        }
+
+        echo "</table>";
+    }
+    ?>
+</body>
+</html>
